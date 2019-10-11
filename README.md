@@ -1,2 +1,3 @@
-# ExerciceFractions
-Exercice d'implémentation collective d'une classe Fraction
+# TestMaven
+
+![Travis build](https://travis-ci.org/vvandenschrieck/TestMaven.svg?branch=master)

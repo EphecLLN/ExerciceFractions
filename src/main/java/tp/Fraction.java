@@ -68,9 +68,7 @@ public class Fraction {
 	 * @param denominator the denominator to set, must be non zero. 
 	 */
 	public void setDenominator(int denominator) {
-		if(denominator != 0 ) {
-			this.denominator = denominator;
-		}
+		
 	}
 	/**
 	 * Convert the fraction to its reduced form.  In case of a negative fraction, 
@@ -174,9 +172,11 @@ public class Fraction {
 	/**
 	 * Compares two fractions
 	 * @param f a non null fraction
-	 * @return true if the current fraction is strictly greater than f
+	 * @return a positive number if the current fraction is strictly greater than f, 
+	 * 		   a negative number if the current fraction is strictly less than f, 
+	 * 		   0 otherwise. 
 	 */
-	public boolean isGreaterThan(Fraction f) {
+	public int compareTo(Fraction f) {
 		return false;
 	}
 	

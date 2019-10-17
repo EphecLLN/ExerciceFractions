@@ -375,14 +375,14 @@ class FractionTest {
 		Fraction f5 = new Fraction(-1,2);
 		Fraction f6 = new Fraction(1,-3);
 		
-		assertFalse(f1.isGreaterThan(f2));
-		assertFalse(f1.isGreaterThan(f1));
-		assertTrue(f1.isGreaterThan(f4));
-		assertFalse(f4.isGreaterThan(f4));
-		assertTrue(f1.isGreaterThan(f5));
-		assertFalse(f5.isGreaterThan(f1));
-		assertTrue(f6.isGreaterThan(f5));
-		assertFalse(f5.isGreaterThan(f6));
+		assertEquals(f1.compareTo(f2), 0);
+		assertEquals(f1.compareTo(f1),0);
+		assertTrue(f1.compareTo(f4)>0);
+		assertTrue(f4.compareTo(f1)<0);
+		assertTrue(f1.compareTo(f5)>0);
+		assertTrue(f5.compareTo(f1)<0);
+		assertTrue(f6.compareTo(f5)>0);
+		assertTrue(f5.compareTo(f6)<0);
 			
 		
 	}

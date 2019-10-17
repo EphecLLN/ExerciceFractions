@@ -88,7 +88,10 @@ class FractionTest {
 	 */
 	@Test
 	void testGetDenominator() {
-		fail("Not yet implemented");
+		Fraction f = new Fraction(1,2);
+		assertEquals(f.getDenominator(),2);
+		f = new Fraction(2,4);
+		assertEquals(f.getDenominator(),2);
 	}
 
 	/**
@@ -96,7 +99,18 @@ class FractionTest {
 	 */
 	@Test
 	void testSetDenominator() {
-		fail("Not yet implemented");
+		Fraction f = new Fraction(1,2);
+		f.setDenominator(4);
+		assertEquals(f.getDenominator(),4);
+		f = new Fraction(2,3);
+		f.setDenominator(4);
+		assertEquals(f.getDenominator(),2);
+		//Test the case of the null denominator
+		//Method fails silently, i.e. no change to the fraction
+		
+		f.setDenominator(0);
+		assertEquals(f.getDenominator(),2);
+		
 	}
 
 	/**
@@ -104,7 +118,19 @@ class FractionTest {
 	 */
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		Fraction f = new Fraction(2,4);
+		assertEquals(f.toString(), "1/2");
+		f = new Fraction(0,4);
+		assertEquals(f.toString(), "0");
+		f = new Fraction(4,4);
+		assertEquals(f.toString(), "1");
+		f = new Fraction(-1,4);
+		assertEquals(f.toString(), "-1/4");
+		f = new Fraction(1,-4);
+		assertEquals(f.toString(), "-1/4");
+		f = new Fraction(4,3);
+		assertEquals(f.toString(), "4/3");
+		
 	}
 
 	/**
@@ -112,7 +138,19 @@ class FractionTest {
 	 */
 	@Test
 	void testAsMixedNumber() {
-		fail("Not yet implemented");
+		Fraction f = new Fraction(2,4);
+		assertEquals(f.asMixedNumber(), "1/2");
+		f = new Fraction(0,4);
+		assertEquals(f.toString(), "0");
+		f = new Fraction(4,4);
+		assertEquals(f.toString(), "1");
+		f = new Fraction(-1,4);
+		assertEquals(f.toString(), "-1/4");
+		f = new Fraction(1,-4);
+		assertEquals(f.toString(), "-1/4");
+		f = new Fraction(4,3);
+		assertEquals(f.toString(), "1 + 1/3");
+		
 	}
 
 	/**
@@ -120,7 +158,29 @@ class FractionTest {
 	 */
 	@Test
 	void testAdd() {
-		fail("Not yet implemented");
+		// 1/2 + 2/4 = 1
+		Fraction f1 = new Fraction(1,2);
+		Fraction f2 = new Fraction(2,4);
+		Fraction f3 = new Fraction(1,1);
+		assertEquals(f1.add(f2), f3);
+		// 1/5 + 1/5 = 2/5 -> use twice the same param
+		f1 = new Fraction(1,5);
+		f3 = new Fraction(1,5);
+		assertEquals(f1.add(f1), f3);
+		// 1/2 + 2/3 = 7/6
+		f1 = new Fraction(1,2);
+		f2 = new Fraction(2,3);
+		f3 = new Fraction(7,6);
+		assertEquals(f1.add(f2), f3);
+		// 1/2 + -2/3 = -1/6
+		f1 = new Fraction(1,2);
+		f2 = new Fraction(-2,3);
+		f3 = new Fraction(-1,6);
+		assertEquals(f1.add(f2), f3);
+		// 1/2 + 0/3 = 1/2
+		f1 = new Fraction(1,2);
+		f2 = new Fraction(0,3);
+		assertEquals(f1.add(f2), f1);
 	}
 
 	/**
@@ -128,7 +188,29 @@ class FractionTest {
 	 */
 	@Test
 	void testSoustract() {
-		fail("Not yet implemented");
+		// 1/2 - -2/4 = 1
+		Fraction f1 = new Fraction(1,2);
+		Fraction f2 = new Fraction(2,-4);
+		Fraction f3 = new Fraction(1,1);
+		assertEquals(f1.soustract(f2), f3);
+		// 1/5 - 1/5 = 0 -> use twice the same param
+		f1 = new Fraction(1,5);
+		f3 = new Fraction(0,5);
+		assertEquals(f1.soustract(f1), f3);
+		// 1/2 - 2/3 = -1/6
+		f1 = new Fraction(1,2);
+		f2 = new Fraction(2,-3);
+		f3 = new Fraction(-1,6);
+		assertEquals(f1.soustract(f2), f3);
+		// 1/2 - -2/3 = 7/6
+		f1 = new Fraction(1,2);
+		f2 = new Fraction(-2,3);
+		f3 = new Fraction(7,6);
+		assertEquals(f1.soustract(f2), f3);
+		// 1/2 - 0/3 = 0
+		f1 = new Fraction(1,2);
+		f2 = new Fraction(0,3);
+		assertEquals(f1.soustract(f2), f1);
 	}
 
 	/**
@@ -136,7 +218,35 @@ class FractionTest {
 	 */
 	@Test
 	void testMultiply() {
-		fail("Not yet implemented");
+		// 1/2 * 1/3 = 1/6
+		Fraction f1 = new Fraction(1,2);
+		Fraction f2 = new Fraction(1,3);
+		Fraction f3 = new Fraction(1,6);
+		assertEquals(f1.multiply(f2), f3);
+		// 1/5 * 1/5 = 1/25 -> use twice the same param
+		f1 = new Fraction(1,5);
+		f3 = new Fraction(1,25);
+		assertEquals(f1.multiply(f1), f3);
+		// 1/5 * 1/5 = 1/25 -> use twice the same param
+		f1 = new Fraction(1,5);
+		f2 = new Fraction(1,-2);
+		f3 = new Fraction(-1,10);
+		assertEquals(f1.multiply(f2), f3);
+		// 1/5 * 0 = 0 
+		f1 = new Fraction(1,5);
+		f2 = new Fraction(0,-2);
+		f3 = new Fraction(0,10);
+		assertEquals(f1.multiply(f2), f3);
+		// 4 * -1/4 = -1 
+		f1 = new Fraction(4,1);
+		f2 = new Fraction(1,-4);
+		f3 = new Fraction(-1,1);
+		assertEquals(f1.multiply(f2), f3);
+		// 4 * 1/2 = 2 
+		f1 = new Fraction(4,1);
+		f2 = new Fraction(1,2);
+		f3 = new Fraction(2,1);
+		assertEquals(f1.multiply(f2), f3);		
 	}
 
 	/**
@@ -144,7 +254,25 @@ class FractionTest {
 	 */
 	@Test
 	void testDivide() {
-		fail("Not yet implemented");
+		// 1/2 : 1/3 = 3/2
+		Fraction f1 = new Fraction(1,2);
+		Fraction f2 = new Fraction(1,3);
+		Fraction f3 = new Fraction(6,1);
+		assertEquals(f1.divide(f2), f3);
+		// 1/5 : 1/5 = 1 -> use twice the same param
+		f1 = new Fraction(1,5);
+		f3 = new Fraction(1,1);
+		assertEquals(f1.divide(f1), f3);
+		// 2/3 : 2 = 1/3 
+		f1 = new Fraction(2,3);
+		f2 = new Fraction(2,1);
+		f3 = new Fraction(1,3);
+		assertEquals(f1.divide(f2), f3);
+		// 2/3 : 4/3 = 1/2 
+		f1 = new Fraction(2,3);
+		f2 = new Fraction(4,3);
+		f3 = new Fraction(1,2);
+		assertEquals(f1.divide(f2), f3);
 	}
 
 	/**
@@ -152,7 +280,31 @@ class FractionTest {
 	 */
 	@Test
 	void testRaiseToPower() {
-		fail("Not yet implemented");
+		// 1/2 pw 2
+		Fraction f1 = new Fraction(1,2);
+		Fraction f2 = new Fraction(2,1);
+		Fraction f3 = new Fraction(1,4);
+		assertEquals(f1.raiseToPower(f2), f3);
+		// 1/4 pw 1/2 = sqrt(1/4) = 1/2
+		f1 = new Fraction(1,4);
+		f2 = new Fraction(1,2);
+		assertEquals(f1.raiseToPower(f2), f2);
+		// 3/4 pw 0 = 1
+		f1 = new Fraction(1,4);
+		f2 = new Fraction(0,2);
+		f3 = new Fraction(1,1);
+		assertEquals(f1.raiseToPower(f2), f3);
+		// 3/4 pw -1 = 4/3
+		f1 = new Fraction(3,4);
+		f2 = new Fraction(-1,1);
+		f3 = new Fraction(4,3);
+		assertEquals(f1.raiseToPower(f2), f3);
+		// 3/4 pw 1 = 3/4
+		f1 = new Fraction(3,4);
+		f2 = new Fraction(1,1);
+		assertEquals(f1.raiseToPower(f2), f1);				
+		
+		
 	}
 
 	/**
@@ -160,7 +312,10 @@ class FractionTest {
 	 */
 	@Test
 	void testIsZero() {
-		fail("Not yet implemented");
+		Fraction zero = new Fraction(0,2);
+		assertTrue(zero.isZero());
+		Fraction nonZero = new Fraction(3,4);
+		assertFalse(nonZero.isZero());
 	}
 
 	/**
@@ -168,7 +323,14 @@ class FractionTest {
 	 */
 	@Test
 	void testIsInteger() {
-		fail("Not yet implemented");
+		Fraction integer = new Fraction(2,2);
+		Fraction zero = new Fraction(0,2);
+		Fraction notInteger = new Fraction(1,2);
+		Fraction negativeInt = new Fraction(-1,2);
+		assertTrue(integer.isInteger());
+		assertTrue(zero.isInteger());
+		assertFalse(notInteger.isInteger());
+		assertTrue(negativeInt.isInteger());
 	}
 
 	/**
@@ -176,15 +338,29 @@ class FractionTest {
 	 */
 	@Test
 	void testIsNegative() {
-		fail("Not yet implemented");
+		Fraction pos = new Fraction(1,2);
+		Fraction zero = new Fraction(0,2);
+		Fraction neg = new Fraction(-1,2);
+		assertTrue(neg.isNegative());
+		assertFalse(pos.isNegative());
+		assertFalse(zero.isNegative());
 	}
 
 	/**
-	 * Test method for {@link tp.Fraction#isSameFraction(tp.Fraction)}.
+	 * Test method for {@link tp.Fraction#equals(tp.Fraction)}.
 	 */
 	@Test
-	void testIsSameFraction() {
-		fail("Not yet implemented");
+	void testEquals() {
+		Fraction f1 =  new Fraction(1,2);
+		Fraction f2 = new Fraction(2,4);
+		Fraction f3 = new Fraction(1,2);
+		Fraction f4 = new Fraction(1,3);
+		assertTrue(f1.equals(f2));
+		assertTrue(f2.equals(f1));
+		assertTrue(f1.equals(f3));
+		assertTrue(f1.equals(f1));
+		assertFalse(f1.equals(f4));
+		
 	}
 
 	/**
@@ -192,7 +368,23 @@ class FractionTest {
 	 */
 	@Test
 	void testIsGreaterThan() {
-		fail("Not yet implemented");
+		Fraction f1 =  new Fraction(1,2);
+		Fraction f2 = new Fraction(2,4);
+		Fraction f3 = new Fraction(1,2);
+		Fraction f4 = new Fraction(1,3);
+		Fraction f5 = new Fraction(-1,2);
+		Fraction f6 = new Fraction(1,-3);
+		
+		assertFalse(f1.isGreaterThan(f2));
+		assertFalse(f1.isGreaterThan(f1));
+		assertTrue(f1.isGreaterThan(f4));
+		assertFalse(f4.isGreaterThan(f4));
+		assertTrue(f1.isGreaterThan(f5));
+		assertFalse(f5.isGreaterThan(f1));
+		assertTrue(f6.isGreaterThan(f5));
+		assertFalse(f5.isGreaterThan(f6));
+			
+		
 	}
 
 	/**
@@ -200,15 +392,16 @@ class FractionTest {
 	 */
 	@Test
 	void testIsUnitFraction() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link tp.Fraction#isReduced()}.
-	 */
-	@Test
-	void testIsReduced() {
-		fail("Not yet implemented");
+		Fraction f1 = new Fraction(1,2);
+		assertTrue(f1.isUnitFraction());
+		Fraction f2 = new Fraction(3,2);
+		assertFalse(f2.isUnitFraction());
+		Fraction f3 = new Fraction(2,3);
+		assertFalse(f3.isUnitFraction());
+		Fraction zero = new Fraction(0,3);
+		assertFalse(zero.isUnitFraction());
+		Fraction one = new Fraction(1,1);
+		assertTrue(one.isUnitFraction());
 	}
 
 	/**
@@ -216,7 +409,14 @@ class FractionTest {
 	 */
 	@Test
 	void testIsProperFraction() {
-		fail("Not yet implemented");
+		Fraction f1 = new Fraction(1,2);
+		assertTrue(f1.isProperFraction());
+		Fraction f2 = new Fraction(3,2);
+		assertFalse(f2.isProperFraction());
+		Fraction f3 = new Fraction(1,1);
+		assertFalse(f3.isProperFraction());
+		Fraction f4 = new Fraction(0,1);
+		assertFalse(f4.isProperFraction());
 	}
 
 	/**
@@ -224,7 +424,26 @@ class FractionTest {
 	 */
 	@Test
 	void testIsAdjacentTo() {
-		fail("Not yet implemented");
+		//1/2 - 1/3 = 1/6
+		Fraction f1 = new Fraction(1,2);
+		Fraction f2 = new Fraction(1,3);
+		assertTrue(f1.isAdjacentTo(f2));
+		
+		// 1/2 - 1/5 = 3/10
+		f1 = new Fraction(1,2);
+		f2 = new Fraction(1,5);
+		assertFalse(f1.isAdjacentTo(f2));
+		
+		// 1/2 - 0 = 1/2
+		f1 = new Fraction(1,2);
+		f2 = new Fraction(0,5);
+		assertTrue(f1.isAdjacentTo(f2));
+		
+		// 2/3 - 1 = -1/3
+		f1 = new Fraction(2,3);
+		f2 = new Fraction(1,1);
+		assertTrue(f1.isAdjacentTo(f2));
+
 	}
 
 	/**
@@ -232,7 +451,10 @@ class FractionTest {
 	 */
 	@Test
 	void testToDouble() {
-		fail("Not yet implemented");
+		assertEquals((new Fraction(1,2)).toDouble(),0.5,0);
+		assertEquals((new Fraction(1,1)).toDouble(),1,0);
+		assertEquals((new Fraction(-1,3)).toDouble(),-0.333,0.001);
+		assertEquals((new Fraction(0,3)).toDouble(),0,0);
 	}
 
 	/**
@@ -240,7 +462,8 @@ class FractionTest {
 	 */
 	@Test
 	void testClone() {
-		fail("Not yet implemented");
+		Fraction f = new Fraction(1,2);
+		assertEquals(f.clone(), f);
 	}
 
 }

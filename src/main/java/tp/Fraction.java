@@ -63,6 +63,8 @@ public class Fraction {
 	/**
 	 * If the denominator is different from zero, the fraction is changed. 
 	 * After the operation, the fraction is reduced. 
+	 * Nothing is done in case of nul denominator for now : this will have to be change 
+	 * in the future
 	 * @param denominator the denominator to set, must be non zero. 
 	 */
 	public void setDenominator(int denominator) {
@@ -77,7 +79,11 @@ public class Fraction {
 	private void reduce() {
 		
 	}
-	@Override
+	/**
+	 * Get a textual representation of the fraction
+	 * Ex : 3, 1/2, 4/3
+	 */
+	
 	public String toString() {
 		return "Fraction []";
 	}
@@ -130,7 +136,7 @@ public class Fraction {
 	 * @param power the power to which the fraction is raised
 	 * @return a new fraction equals to the current fraction raised to the given power.  
 	 */
-	public Fraction raiseToPower(int power) {
+	public Fraction raiseToPower(Fraction power) {
 		return null;
 	}
 	
@@ -160,7 +166,7 @@ public class Fraction {
 	 * @param f a non null fraction
 	 * @return true if f and the current fraction have the same value
 	 */
-	public boolean isSameFraction(Fraction f) {
+	public boolean equals(Object f) {
 		return false;
 	}
 	
@@ -180,13 +186,6 @@ public class Fraction {
 	public boolean isUnitFraction() {
 		return false;
 	}
-	
-	/**
-	 * @return true if the fraction is reduced
-	 */
-	public boolean isReduced() {
-		return false;
-	}
 	/**
 	 * 
 	 * @return true if the fraction is proper, i.e. its absolute value is strictly less than 1
@@ -197,7 +196,7 @@ public class Fraction {
 	/**
 	 * 
 	 * @param f une fraction non null
-	 * @return true if the difference between f and the current fraction is a unit fraction
+	 * @return true if the absolute value of the difference between f and the current fraction is a unit fraction
 	 */
 	public boolean isAdjacentTo(Fraction f) {
 		return true;

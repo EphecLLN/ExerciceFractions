@@ -1,4 +1,4 @@
-#Exercice sur les fractions
+##Exercice sur les fractions
 
 Objectif : Implémenter collectivement la classe de manière à faire passer tous les tests (cfr statut ci-dessous). 
 
